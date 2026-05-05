@@ -8,6 +8,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] Shooting shootData;
     [SerializeField] Transform shootPoint;
     [SerializeField] ObjectPooler objectPooler;
+    [SerializeField] Camera cam;
+
     private GameObject bulletObject;
     private float timeSinceLastShot;
     float desiredAngle;
@@ -48,6 +50,8 @@ public class Shooter : MonoBehaviour
         float timeBetweenShots = 1f / shootData.fireRate;
         if (timeSinceLastShot >= timeBetweenShots)
         {
+            //slight camera shake
+            //cam.transform.position += (Vector3)(Random.insideUnitCircle * 0.1f);
             GameObject bulletObject = objectPooler.GetPooledObject();
             bulletObject.transform.position = shootPoint.position;
             bulletObject.transform.rotation = shootPoint.rotation;
